@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Display</title>
+</head>
+<body>
+    <h1>Video Display</h1>
+    <video id="myVideo" controls>
+        <source id="videoSource" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button id="loadVideoButton">Load Video</button>
+
+    <script>
+        document.getElementById('loadVideoButton').addEventListener('click', function() {
+            fetch('/get_video', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                const videoSource = document.getElementById('videoSource');
+                videoSource.src = url;
+                const video = document.getElementById('myVideo');
+                video.load();
+                video.play();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
