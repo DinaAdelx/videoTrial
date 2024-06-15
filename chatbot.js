@@ -35,7 +35,10 @@ fetch('/send-value', {
   console.error('Error:', error);
 });
 /********************************************************/
+/* so far we have recieved a value from user .. this will be used later because we need it in the model for further use
+>> now lets head to the important part which is the video display
 
+*/
 
 
   // Clear input field
@@ -48,6 +51,11 @@ fetch('/send-value', {
   message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${input}</p>`;
   conversation.appendChild(message);
 
+
+/* here is where we start >> this area is suppose to get the value from the python which in the first case is a string but here in this case is a video 
+>> so where suppose to get the video and display it in the html*/
+
+  
   try {
     // Generate chatbot response
     const response = await getValue();
@@ -55,7 +63,11 @@ fetch('/send-value', {
     // Add chatbot response to conversation
     message = document.createElement('div');
     message.classList.add('chatbot-message','chatbot');
-    message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${response}</p>`;
+    message.innerHTML = `<video controls>
+            <source src="${response}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>`;
+   // message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${response}</p>`;
     conversation.appendChild(message);
     message.scrollIntoView({behavior: "smooth"});
   } catch (error) {
@@ -63,6 +75,9 @@ fetch('/send-value', {
     // Handle the error as needed
   }
 });
+
+
+
 
 async function getValue() {
   try {
@@ -77,7 +92,7 @@ async function getValue() {
 
 
 function getVariableFromPython() {
-    return fetch('/get-variable')
+    return fetch('/video')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
