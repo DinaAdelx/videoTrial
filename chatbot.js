@@ -92,8 +92,23 @@ async function getValue() {
 
 
 function getVariableFromPython() {
+fetch('/get-video')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        console.log(blob); // Log the blob object received
+        const videoUrl = URL.createObjectURL(blob);
+        // Continue with displaying the video
+    })
+    .catch(error => {
+        console.error('Error fetching video:', error);
+    });
 
-
+/*
     return fetch('/get-video')
         .then(response => {
             if (!response.ok) {
@@ -107,7 +122,7 @@ function getVariableFromPython() {
         .catch(error => {
             console.error('Error:', error);
             return ''; // Return an empty string or handle the error as needed
-        });
+        });*/
         
 }
 
