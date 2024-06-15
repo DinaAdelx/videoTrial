@@ -58,7 +58,7 @@ fetch('/send-value', {
   
   try {
     // Generate chatbot response
-    const response = await getValue();
+    const response = await getVariableFromPython();
 
     // Add chatbot response to conversation
     message = document.createElement('div');
