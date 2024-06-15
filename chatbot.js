@@ -92,7 +92,7 @@ async function getValue() {
 
 
 function getVariableFromPython() {
-    return fetch('/get-variable')
+    return fetch('/get-video')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
