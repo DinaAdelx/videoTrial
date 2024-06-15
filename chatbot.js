@@ -92,33 +92,8 @@ async function getValue() {
 
 
 function getVariableFromPython() {
-  document.addEventListener('DOMContentLoaded', function() {
-    fetch('/get-video')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.blob();
-        })
-        .then(blob => {
-            // Create a URL for the blob object representing the video file
-            const videoUrl = URL.createObjectURL(blob);
 
-            // Create a video element and set its source to the URL
-            const videoElement = document.createElement('video');
-            videoElement.src = videoUrl;
-            videoElement.controls = true;
 
-            // Append the video element to the DOM (e.g., to a specific div)
-            const videoContainer = document.getElementById('video-container');
-            videoContainer.appendChild(videoElement);
-        })
-        .catch(error => {
-            console.error('Error fetching video:', error);
-        });
-});
-
-  /*
     return fetch('/get-video')
         .then(response => {
             if (!response.ok) {
@@ -133,7 +108,7 @@ function getVariableFromPython() {
             console.error('Error:', error);
             return ''; // Return an empty string or handle the error as needed
         });
-        */
+        
 }
 
 async function getValue() {
