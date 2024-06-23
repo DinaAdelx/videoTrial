@@ -64,7 +64,7 @@ fetch('/send-value', {
     message = document.createElement('div');
     message.classList.add('chatbot-message','chatbot');
     message.innerHTML = `<video controls>
-            <source src="${response}" type="video/mp4">
+            <source src="/video" type="video/mp4">
             Your browser does not support the video tag.
         </video>`;
    // message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${response}</p>`;
