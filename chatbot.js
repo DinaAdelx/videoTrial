@@ -58,7 +58,7 @@ fetch('/send-value', {
   
   try {
     // Generate chatbot response
-    const response = await getVariableFromPython();
+   // const response = await getVariableFromPython();
 
     // Add chatbot response to conversation
     message = document.createElement('div');
@@ -79,62 +79,7 @@ fetch('/send-value', {
 
 
 
-async function getValue() {
-  try {
-    const variableValue = await getVariableFromPython();
-    console.log("Variable value:", variableValue);
-    return variableValue;
-  } catch (error) {
-    console.error('Error:', error);
-    throw error; // Rethrow the error to be caught by the event listener
-  }
-}
 
 
-function getVariableFromPython() {
-fetch('/video')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        console.log(blob); // Log the blob object received
-        const videoUrl = URL.createObjectURL(blob);
-        // Continue with displaying the video
-    })
-    .catch(error => {
-        console.error('Error fetching video:', error);
-    });
-
-/*
-    return fetch('/get-video')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            return data.value;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            return ''; // Return an empty string or handle the error as needed
-        });*/
-        
-}
-
-async function getValue() {
-  try {
-    const variableValue = await getVariableFromPython();
-    console.log("Variable value:", variableValue);
-    return variableValue; // Return the variable value
-  } catch (error) {
-    console.error('Error:', error);
-    throw error; // Rethrow the error to be caught by the event listener
-  }
-}
 
 
